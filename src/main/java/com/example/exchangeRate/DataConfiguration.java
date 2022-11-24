@@ -15,4 +15,5 @@ public class DataConfiguration {
     public void getExternalDataOnStartup(ApplicationReadyEvent event) {
         exchangeRateService.getExternalData();
     }
+
 }

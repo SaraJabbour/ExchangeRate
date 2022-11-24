@@ -9,14 +9,36 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity(name="dailyRate")
-public class Rate {
+public class DailyRate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
-    Long id;
-
+    private Long id;
     private LocalDate date;
     private Double USD;
+
+    public DailyRate(){
+
+    }
+    public DailyRate(LocalDate date, Double value) {
+        this.date=date;
+        this.USD=value;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public Double getUSD() {
         return USD;
