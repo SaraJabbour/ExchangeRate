@@ -1,6 +1,5 @@
 package com.example.exchangeRate.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
