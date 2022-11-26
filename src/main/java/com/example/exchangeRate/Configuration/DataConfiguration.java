@@ -1,10 +1,14 @@
-package com.example.exchangeRate;
+package com.example.exchangeRate.Configuration;
 
 
+import com.example.exchangeRate.ApiLayer.ApiLayerResponseConverter;
+import com.example.exchangeRate.ApiLayer.ApiLayerResponseGetter;
 import com.example.exchangeRate.Model.DailyRate;
 import com.example.exchangeRate.Model.RateVariation;
 import com.example.exchangeRate.Service.DailyRateService;
 import com.example.exchangeRate.Service.RateVariationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +22,8 @@ import java.util.List;
 public class DataConfiguration {
     @Autowired
     private ApiLayerResponseGetter apiLayerResponseGetter;
-
     @Autowired
-    private ApiLayerParser apiLayerParser;
-
+    private ApiLayerResponseConverter apiLayerParser;
     @Autowired
     private DailyRateService dailyRateService;
     @Autowired
@@ -29,7 +31,8 @@ public class DataConfiguration {
 
     private List<DailyRate> dailyRates;
 
-    // TODO Exception Handling
+    Logger LOGGER = LoggerFactory.getLogger(DataConfiguration.class);
+
     @EventListener
     public void populateTablesOnStartup(ApplicationReadyEvent event){
         populateDailyRates();
@@ -38,17 +41,22 @@ public class DataConfiguration {
     public void populateDailyRates(){
         try {
             ResponseEntity<String> responseEntity = apiLayerResponseGetter.getResponse();
-            dailyRates = apiLayerParser.parseResponse(responseEntity);
+            dailyRates = apiLayerParser.convertResponse(responseEntity);
             dailyRateService.saveDailyRates(dailyRates);
         }
-        catch(NullPointerException e){
-            e.printStackTrace();
+        catch(RuntimeException e){
+            LOGGER.error("Couldn't get, insert data");
         }
     }
 
     public void populateRateVariation(){
-        RateVariation rateVariation=getRateVariation();
-        rateVariationService.saveRateVariation(rateVariation);
+        try {
+            RateVariation rateVariation = getRateVariation();
+            rateVariationService.saveRateVariation(rateVariation);
+        }
+        catch (RuntimeException e){
+            LOGGER.error("Couldn't get, insert data");
+        }
     }
 
     private RateVariation getRateVariation() {

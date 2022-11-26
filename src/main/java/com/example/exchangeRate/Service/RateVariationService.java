@@ -12,11 +12,11 @@ public class RateVariationService {
     @Autowired
     private RateVariationRepository rateVariationRepository;
 
-    public RateVariation getRateVariation() {
+    public RateVariation getRateVariation() throws RuntimeException {
         Optional <RateVariation> optionalRateVariation= rateVariationRepository.findById(1);
         return optionalRateVariation.orElse(new RateVariation(0,0));
     }
-    public void saveRateVariation(RateVariation rateVariation){
+    public void saveRateVariation(RateVariation rateVariation) throws RuntimeException{
         rateVariationRepository.save(rateVariation);
     }
 

@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class ExchangeRateApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ExchangeRateApplication.class, args);
 	}

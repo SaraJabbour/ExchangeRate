@@ -1,4 +1,4 @@
-package com.example.exchangeRate;
+package com.example.exchangeRate.Interfaces;
 
 import org.springframework.http.ResponseEntity;
 

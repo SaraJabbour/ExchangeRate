@@ -1,8 +1,8 @@
-package com.example.exchangeRate;
+package com.example.exchangeRate.ApiLayer;
 
 import java.time.LocalDate;
 
-public class ApiLayerParamConfiguration {
+public class ApiLayerParam {
     private static final String baseRate="EUR";
     private static final String symbol="USD";
     private static final LocalDate startDate=LocalDate.of(2021,1,1);

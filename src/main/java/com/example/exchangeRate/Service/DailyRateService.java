@@ -25,7 +25,7 @@ public class DailyRateService {
     private DailyRateRepository dailyRateRepository;
 
 
-    public void saveDailyRates(List <DailyRate> dailyRates){
+    public void saveDailyRates(List <DailyRate> dailyRates) throws RuntimeException{
         dailyRateRepository.saveAll(dailyRates);
     }
 
