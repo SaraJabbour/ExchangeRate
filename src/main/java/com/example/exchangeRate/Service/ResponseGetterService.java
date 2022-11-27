@@ -1,7 +1,6 @@
-package com.example.exchangeRate.ApiLayer;
+package com.example.exchangeRate.Service;
 
 import com.example.exchangeRate.ApiLayer.ApiLayerParam;
-import com.example.exchangeRate.ApiLayer.ApiLayerRequestMaker;
 import com.example.exchangeRate.Interfaces.ResponseGetter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,22 +9,20 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import static java.sql.JDBCType.NULL;
-
-@Component
-public class ApiLayerResponseGetter implements ResponseGetter {
+@Service
+public class ResponseGetterService implements ResponseGetter {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
-    private ApiLayerRequestMaker apiLayerRequestMaker;
+    private RequestMakerService requestMakerService;
 
-    Logger LOGGER = LoggerFactory.getLogger(ApiLayerResponseGetter.class);
+    Logger LOGGER = LoggerFactory.getLogger(ResponseGetterService.class);
     public ResponseEntity<String> getResponse() {
         try {
-            HttpEntity<Void> requestEntity = apiLayerRequestMaker.makeRequest();
+            HttpEntity<Void> requestEntity = requestMakerService.makeRequest();
             String url = ApiLayerParam.createUrl();
             return restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
         }

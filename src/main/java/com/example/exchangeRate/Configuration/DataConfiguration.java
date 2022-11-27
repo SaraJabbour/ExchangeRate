@@ -1,8 +1,8 @@
 package com.example.exchangeRate.Configuration;
 
 
-import com.example.exchangeRate.ApiLayer.ApiLayerResponseConverter;
-import com.example.exchangeRate.ApiLayer.ApiLayerResponseGetter;
+import com.example.exchangeRate.Service.ResponseConverterService;
+import com.example.exchangeRate.Service.ResponseGetterService;
 import com.example.exchangeRate.Model.DailyRate;
 import com.example.exchangeRate.Model.RateVariation;
 import com.example.exchangeRate.Service.DailyRateService;
@@ -21,9 +21,9 @@ import java.util.List;
 @Configuration
 public class DataConfiguration {
     @Autowired
-    private ApiLayerResponseGetter apiLayerResponseGetter;
+    private ResponseGetterService responseGetterService;
     @Autowired
-    private ApiLayerResponseConverter apiLayerParser;
+    private ResponseConverterService responseConverterService;
     @Autowired
     private DailyRateService dailyRateService;
     @Autowired
@@ -40,8 +40,8 @@ public class DataConfiguration {
     }
     public void populateDailyRates(){
         try {
-            ResponseEntity<String> responseEntity = apiLayerResponseGetter.getResponse();
-            dailyRates = apiLayerParser.convertResponse(responseEntity);
+            ResponseEntity<String> responseEntity = responseGetterService.getResponse();
+            dailyRates = responseConverterService.convertResponse(responseEntity);
             dailyRateService.saveDailyRates(dailyRates);
         }
         catch(RuntimeException e){
@@ -68,6 +68,7 @@ public class DataConfiguration {
                 increases++;
             else if (previousValue > currentValue)
                 decreases++;
+            previousValue=currentValue;
         }
         return new RateVariation(increases,decreases);
     }
