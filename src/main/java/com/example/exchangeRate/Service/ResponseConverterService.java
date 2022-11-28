@@ -43,8 +43,8 @@ public class ResponseConverterService implements ResponseConverter {
         while(keys.hasNext()) {
             String key = keys.next();
             LocalDate date= LocalDate.parse(key);
-            Double value=jsonRates.get(key).getAsJsonObject().get("USD").getAsDouble();
-            DailyRate dailyRate=new DailyRate(LocalDate.parse(key),value);
+            Double rate=jsonRates.get(key).getAsJsonObject().get("USD").getAsDouble();
+            DailyRate dailyRate=new DailyRate(date,rate);
             dailyRates.add(dailyRate);
         }
         return dailyRates;
