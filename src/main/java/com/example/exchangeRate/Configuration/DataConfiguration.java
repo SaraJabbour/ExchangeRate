@@ -56,6 +56,7 @@ public class DataConfiguration {
         }
         catch (RuntimeException e){
             LOGGER.error("Couldn't get, insert data");
+            throw e;
         }
     }
 

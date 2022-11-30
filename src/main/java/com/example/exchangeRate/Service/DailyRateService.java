@@ -24,7 +24,6 @@ public class DailyRateService {
     @Autowired
     private DailyRateRepository dailyRateRepository;
 
-
     public void saveDailyRates(List <DailyRate> dailyRates) throws RuntimeException{
         dailyRateRepository.saveAll(dailyRates);
     }

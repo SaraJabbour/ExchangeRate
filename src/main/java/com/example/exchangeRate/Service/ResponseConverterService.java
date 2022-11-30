@@ -16,7 +16,6 @@ import java.util.List;
 
 @Service
 public class ResponseConverterService implements ResponseConverter {
-
     Logger LOGGER = LoggerFactory.getLogger(ResponseConverterService.class);
 
     @Override
@@ -24,7 +23,6 @@ public class ResponseConverterService implements ResponseConverter {
         JsonObject jsonObject = parseResponse(response);
         return getDailyRates(jsonObject);
     }
-
     public JsonObject parseResponse(ResponseEntity<String> response) {
         try{
             JsonObject jsonObject = JsonParser.parseString(response.getBody()).getAsJsonObject();
@@ -34,7 +32,6 @@ public class ResponseConverterService implements ResponseConverter {
             LOGGER.error("Response body null");
             return new JsonObject ();
         }
-
     }
     public List <DailyRate> getDailyRates(JsonObject jsonRates){
         Iterator<String> keys = jsonRates.keySet().iterator();

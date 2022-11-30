@@ -18,7 +18,6 @@ public class ResponseGetterService implements ResponseGetter {
     private RestTemplate restTemplate;
     @Autowired
     private RequestMakerService requestMakerService;
-
     Logger LOGGER = LoggerFactory.getLogger(ResponseGetterService.class);
     public ResponseEntity<String> getResponse() {
         try {
@@ -29,7 +28,7 @@ public class ResponseGetterService implements ResponseGetter {
         catch (RuntimeException e){
             LOGGER.error("Couldn't get response from API");
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
 
+        }
     }
 }
