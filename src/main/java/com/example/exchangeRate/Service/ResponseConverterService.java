@@ -2,6 +2,7 @@ package com.example.exchangeRate.Service;
 
 import com.example.exchangeRate.Interfaces.ResponseConverter;
 import com.example.exchangeRate.Model.DailyRate;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//useless interface
 @Service
 public class ResponseConverterService implements ResponseConverter {
     Logger LOGGER = LoggerFactory.getLogger(ResponseConverterService.class);
@@ -23,8 +25,10 @@ public class ResponseConverterService implements ResponseConverter {
         JsonObject jsonObject = parseResponse(response);
         return getDailyRates(jsonObject);
     }
+    //gson
     public JsonObject parseResponse(ResponseEntity<String> response) {
         try{
+            DailyRate rate = new Gson().fromJson(response.getBody() , DailyRate.class);
             JsonObject jsonObject = JsonParser.parseString(response.getBody()).getAsJsonObject();
             return jsonObject.get("rates").getAsJsonObject();
         }
