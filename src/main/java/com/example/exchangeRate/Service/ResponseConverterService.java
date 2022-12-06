@@ -1,6 +1,5 @@
 package com.example.exchangeRate.Service;
 
-import com.example.exchangeRate.Interfaces.ResponseConverter;
 import com.example.exchangeRate.Model.DailyRate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -17,35 +16,35 @@ import java.util.List;
 
 //useless interface
 @Service
-public class ResponseConverterService implements ResponseConverter {
+public class ResponseConverterService {
     Logger LOGGER = LoggerFactory.getLogger(ResponseConverterService.class);
 
-    @Override
-    public List<DailyRate> convertResponse(ResponseEntity<String> response){
+    public List<DailyRate> convertResponse(ResponseEntity<String> response) {
         JsonObject jsonObject = parseResponse(response);
         return getDailyRates(jsonObject);
     }
+
     //gson
     public JsonObject parseResponse(ResponseEntity<String> response) {
-        try{
-            DailyRate rate = new Gson().fromJson(response.getBody() , DailyRate.class);
+        try {
+            DailyRate rate = new Gson().fromJson(response.getBody(), DailyRate.class);
             JsonObject jsonObject = JsonParser.parseString(response.getBody()).getAsJsonObject();
             return jsonObject.get("rates").getAsJsonObject();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             LOGGER.error("Response body null");
-            return new JsonObject ();
+            return new JsonObject();
         }
     }
-    public List <DailyRate> getDailyRates(JsonObject jsonRates){
-        Iterator<String> keys = jsonRates.keySet().iterator();
-        ArrayList<DailyRate> dailyRates= new ArrayList<>();
 
-        while(keys.hasNext()) {
+    public List<DailyRate> getDailyRates(JsonObject jsonRates) {
+        Iterator<String> keys = jsonRates.keySet().iterator();
+        ArrayList<DailyRate> dailyRates = new ArrayList<>();
+
+        while (keys.hasNext()) {
             String key = keys.next();
-            LocalDate date= LocalDate.parse(key);
-            Double rate=jsonRates.get(key).getAsJsonObject().get("USD").getAsDouble();
-            DailyRate dailyRate=new DailyRate(date,rate);
+            LocalDate date = LocalDate.parse(key);
+            Double rate = jsonRates.get(key).getAsJsonObject().get("USD").getAsDouble();
+            DailyRate dailyRate = new DailyRate(date, rate);
             dailyRates.add(dailyRate);
         }
         return dailyRates;
