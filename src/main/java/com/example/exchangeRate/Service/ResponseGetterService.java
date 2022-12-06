@@ -1,15 +1,16 @@
 package com.example.exchangeRate.Service;
 
-import com.example.exchangeRate.ApiLayer.ApiLayerParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.time.LocalDate;
 
 @Service
 public class ResponseGetterService {
@@ -19,15 +20,24 @@ public class ResponseGetterService {
     @Autowired
     private RequestMakerService requestMakerService;
 
+    @Value("${URL}")
+    private String baseUrl;
+    @Value("${Symbols}")
+    private String symbol;
+
+    public String createUrl() {
+        return baseUrl + LocalDate.now() + "?symbols=" + symbol;
+    }
+
     public ResponseEntity<String> getResponse() {
-        try {
-            HttpEntity<Void> requestEntity = requestMakerService.makeRequest();
-            String url = ApiLayerParam.createUrl();
-            return restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
-        } catch (RuntimeException e) {
+        System.out.println(createUrl());
+        HttpEntity<Void> requestEntity = requestMakerService.makeRequest();
+        String url = createUrl();
+        return restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+        /*} catch (RuntimeException e) {
             LOGGER.error("Couldn't get response from API");
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 
-        }
+        }*/
     }
 }
