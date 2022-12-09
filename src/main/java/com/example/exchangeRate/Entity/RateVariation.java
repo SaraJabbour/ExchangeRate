@@ -1,9 +1,9 @@
-package com.example.exchangeRate.Model;
+package com.example.exchangeRate.Entity;
 
 import javax.persistence.*;
 
 
-@Entity(name="rateVariation")
+@Entity(name = "rateVariation")
 public class RateVariation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +12,14 @@ public class RateVariation {
     private Integer increases;
     @Column(columnDefinition = "integer default 0")
     private Integer decreases;
+
+    public RateVariation(Integer increases, Integer decreases) {
+        this.increases = increases;
+        this.decreases = decreases;
+    }
+
+    public RateVariation() {
+    }
 
     public Integer getId() {
         return id;
@@ -35,12 +43,5 @@ public class RateVariation {
 
     public void setDecreases(Integer decreases) {
         this.decreases = decreases;
-    }
-
-    public RateVariation(Integer increases, Integer decreases) {
-        this.increases = increases;
-        this.decreases = decreases;
-    }
-    public RateVariation() {
     }
 }

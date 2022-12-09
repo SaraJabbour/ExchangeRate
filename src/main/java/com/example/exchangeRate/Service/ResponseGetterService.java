@@ -19,7 +19,6 @@ public class ResponseGetterService {
     private RestTemplate restTemplate;
     @Autowired
     private RequestMakerService requestMakerService;
-
     @Value("${URL}")
     private String baseUrl;
     @Value("${Symbols}")
@@ -30,14 +29,8 @@ public class ResponseGetterService {
     }
 
     public ResponseEntity<String> getResponse() {
-        System.out.println(createUrl());
         HttpEntity<Void> requestEntity = requestMakerService.makeRequest();
         String url = createUrl();
         return restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
-        /*} catch (RuntimeException e) {
-            LOGGER.error("Couldn't get response from API");
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-
-        }*/
     }
 }
