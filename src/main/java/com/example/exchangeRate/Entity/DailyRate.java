@@ -1,4 +1,4 @@
-package com.example.exchangeRate.Model;
+package com.example.exchangeRate.Entity;
 
 
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity(name="dailyRate")
+@Entity(name = "dailyRate")
 public class DailyRate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +15,12 @@ public class DailyRate {
     private LocalDate date;
     private Double USD;
 
-    public DailyRate(){
-
+    public DailyRate() {
     }
-    public DailyRate(LocalDate date, Double value) {
-        this.date=date;
-        this.USD=value;
+
+    public DailyRate(LocalDate date, Double USD) {
+        this.date = date;
+        this.USD = USD;
     }
 
     public Long getId() {
@@ -46,4 +46,5 @@ public class DailyRate {
     public void setUSD(Double USD) {
         this.USD = USD;
     }
+
 }

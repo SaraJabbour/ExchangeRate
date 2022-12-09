@@ -1,7 +1,16 @@
 package com.example.exchangeRate.Repository;
 
-import com.example.exchangeRate.Model.RateVariation;
+import com.example.exchangeRate.Entity.RateVariation;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-public interface RateVariationRepository extends CrudRepository<RateVariation,Integer> {
+public interface RateVariationRepository extends CrudRepository<RateVariation, Integer> {
+    @Modifying
+    @Query(value = "UPDATE rate_variation SET increases = increases + 1;", nativeQuery = true)
+    void updateIncrease();
+
+    @Modifying
+    @Query(value = "UPDATE rate_variation SET decreases = decreases + 1;", nativeQuery = true)
+    void updateDecrease();
 }

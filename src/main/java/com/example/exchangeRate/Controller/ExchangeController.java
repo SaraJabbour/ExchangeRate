@@ -1,8 +1,7 @@
 package com.example.exchangeRate.Controller;
 
 
-
-import com.example.exchangeRate.Model.RateVariation;
+import com.example.exchangeRate.Entity.RateVariation;
 import com.example.exchangeRate.Service.RateVariationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,18 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class ExchangeController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeController.class);
     @Autowired
     private RateVariationService exchangeVariationService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeController.class);
     @GetMapping
-    public String displayVariation(Model model){
+    public String displayVariation(Model model) {
         try {
             RateVariation rateVariation = exchangeVariationService.getRateVariation();
             model.addAttribute("rateVariation", rateVariation);
             return "index";
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error("Couldn't fetch rate variation");
             return "error";
         }
