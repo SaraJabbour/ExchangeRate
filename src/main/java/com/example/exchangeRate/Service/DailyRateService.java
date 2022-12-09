@@ -16,6 +16,5 @@ public class DailyRateService {
 
     public Double getDifferenceBetweenLatestValues() {
         return dailyRateRepository.getDifferenceBetweenLatestValues().orElseThrow();
-
     }
 }

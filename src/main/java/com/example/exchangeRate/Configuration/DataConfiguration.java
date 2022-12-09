@@ -1,8 +1,8 @@
 package com.example.exchangeRate.Configuration;
 
 
-import com.example.exchangeRate.Service.DailyRateUpdaterService;
-import com.example.exchangeRate.Service.RateVariationUpdateService;
+import com.example.exchangeRate.Service.DailyRateGetterAndUpdater;
+import com.example.exchangeRate.Service.RateVariationUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +15,15 @@ import java.time.LocalDateTime;
 public class DataConfiguration {
     Logger LOGGER = LoggerFactory.getLogger(DataConfiguration.class);
     @Autowired
-    private RateVariationUpdateService rateVariationUpdateService;
+    private RateVariationUpdater rateVariationUpdater;
     @Autowired
-    private DailyRateUpdaterService dailyRateUpdaterService;
+    private DailyRateGetterAndUpdater dailyRateGetterAndUpdater;
 
     // Updates every day at 1 AM
     @Scheduled(cron = "0 0 1 * * ?")
     public void scheduledDataUpdater() {
-        dailyRateUpdaterService.getAndSaveDailyRate();
-        rateVariationUpdateService.updateRateVariation();
+        dailyRateGetterAndUpdater.getAndSaveDailyRate();
+        rateVariationUpdater.updateRateVariation();
         LOGGER.info("Database updated at " + LocalDateTime.now());
     }
 }

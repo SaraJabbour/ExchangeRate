@@ -47,5 +47,4 @@ public class DailyRate {
         this.USD = USD;
     }
 
-
 }
