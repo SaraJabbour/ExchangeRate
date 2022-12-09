@@ -1,7 +1,5 @@
 package com.example.exchangeRate.Service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -14,7 +12,6 @@ import java.time.LocalDate;
 
 @Service
 public class ResponseGetterService {
-    Logger LOGGER = LoggerFactory.getLogger(ResponseGetterService.class);
     @Autowired
     private RestTemplate restTemplate;
     @Autowired

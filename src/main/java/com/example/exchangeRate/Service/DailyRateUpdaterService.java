@@ -14,10 +14,9 @@ public class DailyRateUpdaterService {
     private ResponseParserService responseParserService;
     @Autowired
     private DailyRateService dailyRateService;
-    @Autowired
-    private RateVariationService rateVariationService;
 
-    public void getAndUpdateDailyRate() {
+
+    public void getAndSaveDailyRate() {
         ResponseEntity<String> responseEntity = responseGetterService.getResponse();
         DailyRate dailyRate = responseParserService.getParsedResponse(responseEntity);
         dailyRateService.saveDailyRate(dailyRate);

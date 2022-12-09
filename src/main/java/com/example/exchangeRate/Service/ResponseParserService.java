@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-//useless interface
 @Service
 public class ResponseParserService {
-
     public DailyRate getParsedResponse(ResponseEntity<String> response) {
         String responseString = response.getBody();
         JsonObject jsonObject = new Gson().fromJson(responseString, JsonObject.class);
