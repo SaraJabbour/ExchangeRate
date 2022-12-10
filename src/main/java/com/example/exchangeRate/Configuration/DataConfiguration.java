@@ -1,7 +1,7 @@
 package com.example.exchangeRate.Configuration;
 
 
-import com.example.exchangeRate.Service.DailyRateGetterAndUpdater;
+import com.example.exchangeRate.Service.DailyRateUpdater;
 import com.example.exchangeRate.Service.RateVariationUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +17,12 @@ public class DataConfiguration {
     @Autowired
     private RateVariationUpdater rateVariationUpdater;
     @Autowired
-    private DailyRateGetterAndUpdater dailyRateGetterAndUpdater;
+    private DailyRateUpdater dailyRateUpdater;
 
     // Updates every day at 1 AM
     @Scheduled(cron = "0 0 1 * * ?")
     public void scheduledDataUpdater() {
-        dailyRateGetterAndUpdater.getAndSaveDailyRate();
+        dailyRateUpdater.getAndSaveDailyRate();
         rateVariationUpdater.updateRateVariation();
         LOGGER.info("Database updated at " + LocalDateTime.now());
     }
