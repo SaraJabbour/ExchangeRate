@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class DailyRateGetterAndUpdater {
+public class DailyRateUpdater {
     @Autowired
     private DailyRateService dailyRateService;
 
     private DailyRateGetter dailyRateGetter;
 
     @Autowired
-    public DailyRateGetterAndUpdater(@Qualifier("apilayer") ApiLayerDailyRateGetter dailyRateGetter) {
+    public DailyRateUpdater(@Qualifier("apilayer") ApiLayerDailyRateGetter dailyRateGetter) {
         this.dailyRateGetter = dailyRateGetter;
     }
 
