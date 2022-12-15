@@ -1,7 +1,8 @@
-package com.example.exchangeRate.Service;
+package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.Entity.RateVariation;
-import com.example.exchangeRate.Repository.RateVariationRepository;
+import com.example.exchangeRate.entity.RateVariation;
+import com.example.exchangeRate.exceptions.NoDataFoundException;
+import com.example.exchangeRate.repository.RateVariationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ public class RateVariationService {
 
     public RateVariation getRateVariation() {
         Optional<RateVariation> optionalRateVariation = rateVariationRepository.findById(1);
-        return optionalRateVariation.orElseThrow();
+        return optionalRateVariation.orElseThrow(NoDataFoundException::new);
     }
 
     @Transactional
