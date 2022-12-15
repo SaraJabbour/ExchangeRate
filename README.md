@@ -25,6 +25,6 @@ It also provides API services for the basic CRUD operations.
   
   
   ## Links
-  Link to external API : https://apilayer.com/marketplace/exchangerates_data-api
+  Link to external API : https://apilayer.com/marketplace/exchangerates_data-api <br>
   Link to swagger generated API documentation: http://localhost:8080/swagger-ui.html
   
