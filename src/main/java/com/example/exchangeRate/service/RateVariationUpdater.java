@@ -1,4 +1,4 @@
-package com.example.exchangeRate.Service;
+package com.example.exchangeRate.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

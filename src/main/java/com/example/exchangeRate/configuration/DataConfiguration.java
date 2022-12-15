@@ -1,19 +1,16 @@
-package com.example.exchangeRate.Configuration;
+package com.example.exchangeRate.configuration;
 
 
-import com.example.exchangeRate.Service.DailyRateUpdater;
-import com.example.exchangeRate.Service.RateVariationUpdater;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.exchangeRate.service.DailyRateUpdater;
+import com.example.exchangeRate.service.RateVariationUpdater;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.time.LocalDateTime;
-
 @Configuration
+@Log4j2
 public class DataConfiguration {
-    Logger LOGGER = LoggerFactory.getLogger(DataConfiguration.class);
     @Autowired
     private RateVariationUpdater rateVariationUpdater;
     @Autowired
@@ -24,6 +21,6 @@ public class DataConfiguration {
     public void scheduledDataUpdater() {
         dailyRateUpdater.getAndSaveDailyRate();
         rateVariationUpdater.updateRateVariation();
-        LOGGER.info("Database updated at " + LocalDateTime.now());
+        log.info("Database updated");
     }
 }

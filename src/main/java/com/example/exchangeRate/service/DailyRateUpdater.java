@@ -1,7 +1,6 @@
-package com.example.exchangeRate.Service;
+package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.Entity.DailyRate;
-import com.example.exchangeRate.Interface.DailyRateGetter;
+import com.example.exchangeRate.entity.DailyRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -9,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DailyRateUpdater {
+    private DailyRateGetter dailyRateGetter;
+
     @Autowired
     private DailyRateService dailyRateService;
-
-    private DailyRateGetter dailyRateGetter;
 
     @Autowired
     public DailyRateUpdater(@Qualifier("apilayer") ApiLayerDailyRateGetter dailyRateGetter) {
