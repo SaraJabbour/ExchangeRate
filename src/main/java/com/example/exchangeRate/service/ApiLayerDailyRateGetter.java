@@ -1,7 +1,6 @@
 package com.example.exchangeRate.service;
 
 import com.example.exchangeRate.entity.DailyRate;
-import com.example.exchangeRate.factory.ApiLayerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +43,7 @@ public class ApiLayerDailyRateGetter implements DailyRateGetter {
     @Override
     public DailyRate getDailyRate() {
         ResponseEntity<String> response = sendRequest();
-        return ApiLayerFactory.getParsedResponse(response);
+        return ApiLayerParser.getParsedResponse(response);
     }
 
     public ResponseEntity<String> sendRequest() {
