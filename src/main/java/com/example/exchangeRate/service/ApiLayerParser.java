@@ -1,16 +1,13 @@
-package com.example.exchangeRate.factory;
+package com.example.exchangeRate.service;
 
 import com.example.exchangeRate.entity.DailyRate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 
-public class ApiLayerFactory {
-    @Value("${exchange.api}")
-    private String apiKey;
+public class ApiLayerParser {
 
     public static DailyRate getParsedResponse(ResponseEntity<String> response) {
         String responseString = response.getBody();
