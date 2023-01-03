@@ -1,6 +1,6 @@
 package com.example.exchangeRate.repository;
 
-import com.example.exchangeRate.entity.RateVariation;
+import com.example.exchangeRate.models.RateVariation;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

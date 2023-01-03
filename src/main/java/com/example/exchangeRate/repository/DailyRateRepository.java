@@ -1,6 +1,6 @@
 package com.example.exchangeRate.repository;
 
-import com.example.exchangeRate.entity.DailyRate;
+import com.example.exchangeRate.models.DailyRate;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

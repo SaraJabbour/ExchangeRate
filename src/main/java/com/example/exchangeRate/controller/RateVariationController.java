@@ -1,7 +1,7 @@
 package com.example.exchangeRate.controller;
 
 
-import com.example.exchangeRate.entity.RateVariation;
+import com.example.exchangeRate.models.RateVariation;
 import com.example.exchangeRate.service.RateVariationService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
