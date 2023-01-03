@@ -1,4 +1,4 @@
-package com.example.exchangeRate.entity;
+package com.example.exchangeRate.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

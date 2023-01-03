@@ -1,6 +1,7 @@
-package com.example.exchangeRate.entity;
+package com.example.exchangeRate.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -10,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 
@@ -19,12 +21,15 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class DailyRate {
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
+    @NotBlank
     private LocalDate date;
 
     @NonNull
+    @NotBlank
     private Double usd;
 }

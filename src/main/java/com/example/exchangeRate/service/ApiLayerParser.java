@@ -1,6 +1,6 @@
 package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.entity.DailyRate;
+import com.example.exchangeRate.models.DailyRate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.http.ResponseEntity;

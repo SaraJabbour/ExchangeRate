@@ -1,6 +1,6 @@
 package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.entity.DailyRate;
+import com.example.exchangeRate.models.DailyRate;
 import org.apache.commons.validator.GenericValidator;
 
 public class DailyRateValidator {

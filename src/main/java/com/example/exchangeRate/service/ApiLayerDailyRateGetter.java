@@ -1,10 +1,9 @@
 package com.example.exchangeRate.service;
 
-import com.example.exchangeRate.entity.DailyRate;
+import com.example.exchangeRate.models.DailyRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,12 +13,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 
-
 @Service("apilayer")
 public class ApiLayerDailyRateGetter implements DailyRateGetter {
-    @Autowired
-    @Lazy
-    private final HttpEntity<Void> httpEntity;
+
+    private HttpEntity<Void> httpEntity;
     @Autowired
     private RestTemplate restTemplate;
     @Value("${exchange.url}")
@@ -28,10 +25,6 @@ public class ApiLayerDailyRateGetter implements DailyRateGetter {
     private String symbol;
     @Value("${exchange.api}")
     private String apiKey;
-
-    private ApiLayerDailyRateGetter() {
-        httpEntity = createRequest();
-    }
 
     @Bean
     public HttpEntity<Void> createRequest() {
@@ -42,12 +35,14 @@ public class ApiLayerDailyRateGetter implements DailyRateGetter {
 
     @Override
     public DailyRate getDailyRate() {
-        ResponseEntity<String> response = sendRequest();
+        ResponseEntity<String> response = createAndSendRequest();
         return ApiLayerParser.getParsedResponse(response);
     }
 
-    public ResponseEntity<String> sendRequest() {
+    public ResponseEntity<String> createAndSendRequest() {
         String url = createUrl();
+        if (httpEntity == null)
+            httpEntity = createRequest();
         return restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
     }
 
