@@ -33,7 +33,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(RateAlreadyExistsException.class)
     public ResponseEntity<String> handleRateAlreadyExists(RateAlreadyExistsException exception, WebRequest webRequest) {
         return ResponseEntity
-                .status(HttpStatus.FORBIDDEN)
+                .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
     }
 
