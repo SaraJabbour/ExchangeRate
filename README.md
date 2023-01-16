@@ -13,10 +13,10 @@
 
 ## Overview
 This project is a web application that compares daily the current value of USD based on EUR. It displays the number of increases and decreases of the dollar rate. It is updated daily.
-It also provides API services for the basic CRUD operations.
+Basic CRUD operations are implemented.
 
 ## Process
-  ### Restful API Services
+  ### Functionalities
   - Users can access all daily rates starting from 2022-01-01 til present
   - Users can check dates on a specific date
   - Admins can modify, add and delete rates
