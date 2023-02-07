@@ -1,8 +1,7 @@
 package com.example.exchangeRate.security.models;
 
+import jakarta.persistence.*;
 import lombok.Data;
-
-import javax.persistence.*;
 
 
 @Data
