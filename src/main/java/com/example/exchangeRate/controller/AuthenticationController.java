@@ -3,11 +3,11 @@ package com.example.exchangeRate.controller;
 import com.example.exchangeRate.security.payload.request.SignInRequest;
 import com.example.exchangeRate.security.payload.request.SignUpRequest;
 import com.example.exchangeRate.security.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
