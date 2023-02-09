@@ -10,17 +10,21 @@ import java.time.LocalDate;
 
 @Service("apilayer")
 public class ApiLayerDailyRateGetter implements DailyRateGetter {
+    private final String symbol = "USD";
     @Autowired
     private ApiLayerProxy apiLayerProxy;
-    @Value("${exchange.symbol}")
-    private String symbol;
     @Value("${exchange.api}")
     private String apiKey;
 
     @Override
     public DailyRate getDailyRate() {
-        String date= String.valueOf(LocalDate.now());
-        ResponseEntity<String> response = apiLayerProxy.getDailyRate(apiKey, date, symbol);
-        return ApiLayerParser.getParsedResponse(response);
+        String date = String.valueOf(LocalDate.now());
+        try {
+            ResponseEntity<String> response = apiLayerProxy.getDailyRate(apiKey, date, symbol);
+            return ApiLayerParser.getParsedResponse(response);
+        } catch (Exception e) {
+            throw new RuntimeException("Error getting request");
+        }
+
     }
 }
