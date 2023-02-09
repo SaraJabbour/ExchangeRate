@@ -17,8 +17,14 @@ public class RateVariationController {
 
     @GetMapping
     public String displayVariation(Model model) {
-        RateVariation rateVariation = exchangeVariationService.getRateVariation();
-        model.addAttribute("rateVariation", rateVariation);
-        return "index";
+        try {
+            RateVariation rateVariation = exchangeVariationService.getRateVariation();
+            model.addAttribute("rateVariation", rateVariation);
+            System.out.println(rateVariation);
+            return "index";
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
+            return "error";
+        }
     }
 }
