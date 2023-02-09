@@ -21,7 +21,7 @@ public class DataConfiguration {
     @Autowired
     private DailyRateUpdater dailyRateUpdater;
 
-    // Updates every day at 1 AM
+    // Updates every day at 1 AM UTC
     @Scheduled(cron = "0 0 1 * * ?")
     public void scheduledDataUpdater() {
         dailyRateUpdater.getAndSaveDailyRate();
