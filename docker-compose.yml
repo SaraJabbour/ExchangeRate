@@ -1,0 +1,36 @@
+version: '1'
+services:
+  app:
+    build:
+      context: .
+    container_name: appContainer
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/exchangerates
+      - SPRING_DATASOURCE_USERNAME=${db_username}
+      - SPRING_DATASOURCE_PASSWORD=${db_password}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - exchange.api=${api_key}
+      - exchangeRate.app.jwtSecret=${jwt_secret}
+      - exchangeRate.app.jwtExpirationMs=86400000
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+  postgres:
+    build:
+      context: docker/postgres
+    container_name: postgresContainer
+    environment:
+      - POSTGRES_USER={db_username}
+      - POSTGRES_PASSWORD=${db_password}
+      - POSTGRES_DB=exchangerates
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    volumes:
+      - pg-db:/var/lib/postgresql/data
+volumes:
+  pg-db:
