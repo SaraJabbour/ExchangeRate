@@ -23,7 +23,7 @@ services:
       context: docker/postgres
     container_name: postgresContainer
     environment:
-      - POSTGRES_USER={db_username}
+      - POSTGRES_USER=${db_username}
       - POSTGRES_PASSWORD=${db_password}
       - POSTGRES_DB=exchangerates
     ports:
