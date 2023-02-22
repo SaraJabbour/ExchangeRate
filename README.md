@@ -14,6 +14,7 @@
 ## Overview
 This project is a web application that compares daily the current value of USD based on EUR. It displays the number of increases and decreases of the dollar rate. It is updated daily.
 Basic CRUD operations are implemented.
+Appliaction is containarized therefore no need to have anything installed beforehand.
 
 ## Process
   ### Functionalities
@@ -32,9 +33,7 @@ Basic CRUD operations are implemented.
   ### Configurations
   1. Regarding the properties folder, environment variables need to be added to spring.datasource.username, spring.datasource.password and exchangeRate.app.jwtSecret
   2. Cron scheduler can be disabled manually by adding scheduler.enabled property. By default, scheduler will execute at 1 A.M every day
-  3. Roles need to be manually added in table. Run the following SQL commands: <br>
-    INSERT INTO roles(name) VALUES('ROLE_USER');<br>
-    INSERT INTO roles(name) VALUES('ROLE_ADMIN');<br>
+  3. To launch application, run docker compose up 
   
   
   ## Links
