@@ -14,7 +14,7 @@
 ## Overview
 This project is a web application that compares daily the current value of USD based on EUR. It displays the number of increases and decreases of the dollar rate. It is updated daily.
 Basic CRUD operations are implemented.
-Appliaction is containarized therefore no need to have anything installed beforehand.
+Application is containarized therefore no need to have anything installed beforehand.
 
 ## Process
   ### Functionalities
